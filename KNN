@@ -17,12 +17,15 @@ def createDataSet():
     labels = ['爱情片','爱情片','动作片','动作片']
     return group,labels
 
+
 #if __name__=='__main__':
 #    #创建数据集
 #    group,labels = createDataSet()
 #    #打印数据集
 #    print(group)
 #    print(labels)
+
+
 
 
 def classify0(inX, dataSet, labels, k):
@@ -54,6 +57,19 @@ def classify0(inX, dataSet, labels, k):
     #reverse降序排序字典
     sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True)
     return sortedClassCount[0][0]
+
+
+'''
+第二种写法：直接利用欧式距离
+def classify0(inx, dataset, labels, k):
+	dist = np.sum((inx - dataset)**2, axis=1)**0.5
+	k_labels = [labels[index] for index in dist.argsort()[0 : k]]
+	# 出现次数最多的标签即为最终类别
+	label = collections.Counter(k_labels).most_common(1)[0][0]
+	return label
+    
+ '''
+
 
 if __name__ == '__main__':
     group, labels = createDataSet()
